@@ -1,103 +1,141 @@
-# marjoballabani.me
+Purushotham Portfolio Website
 
-A neo-brutalist personal portfolio built with vanilla HTML, CSS, and JavaScript. No frameworks, no build tools, no dependencies - just raw code with bold design choices.
+A Neo-Brutalist personal portfolio website built using HTML, CSS, and JavaScript.
 
-This is a personal fun project, not a production template. The code prioritizes creativity and experimentation over best practices. It's a playground for trying out ideas, animations, and interactions - not a reference architecture.
+This project focuses on creative UI design, experimental layouts, and interactive elements without using frameworks or build tools. Everything is written using pure front-end technologies to keep the project lightweight and fast.
 
-**[Live Site](https://marjoballabani.me)**
+This portfolio represents my personal playground for experimenting with web design, animations, and interactive UI ideas.
 
-## What is Neo-Brutalism?
+Live Website: (Add your website link here)
 
-Neo-brutalism (also called neo-brutalist web design) is a UI style inspired by brutalist architecture - raw, bold, and unapologetically loud. It rejects the polished, rounded, drop-shadowed sameness of modern web design and replaces it with:
+About the Design
 
-- **Thick black borders** - every element has a hard, visible edge
-- **Flat, offset box shadows** - no soft gradients or blurs, just solid color blocks shifted by a few pixels (`box-shadow: 8px 8px 0 #000`)
-- **High-contrast color palettes** - bright yellows, pinks, cyans, and greens on white/dark backgrounds
-- **Visible structure** - the "bones" of the layout are intentionally exposed, not hidden behind smooth transitions
-- **Playful imperfection** - torn paper edges, tape stickers, hand-drawn vibes mixed with geometric precision
+This website follows the Neo-Brutalist design style, a bold and expressive UI trend inspired by brutalist architecture.
 
-This site leans into a **hand-crafted, scrapbook-like** take on neo-brutalism: paper tear dividers, a falling SVG terminal icon, highlight markers that animate on scroll, and a treasure map hidden behind a book-flip animation.
+Instead of polished and minimal interfaces, neo-brutalism focuses on:
 
-## Design Decisions
+Strong visible borders
+High-contrast color palettes
+Flat offset shadows
+Exposed layout structures
+Creative imperfections
 
-### Color System
+The goal is to create a bold, creative, and visually striking interface.
 
-The palette uses CSS custom properties for light/dark theming:
+Design System
+Color Palette
 
-| Color | Variable | Usage |
-|-------|----------|-------|
-| Yellow | `--yellow` | Primary accent, CTAs, loader |
-| Cyan | `--cyan` | Code elements, highlights |
-| Pink | `--pink` | Secondary accent, highlights |
-| Green | `--green` | Success states, highlights |
-| Black | `--border` | Borders, shadows, text |
+The project uses CSS variables for easy color management.
 
-### Typography
+Color	Variable	Usage
+Yellow	--yellow	Primary accent
+Cyan	--cyan	Code and highlight elements
+Pink	--pink	Secondary accents
+Green	--green	Success and highlight states
+Black	--border	Borders and text
+Typography
 
-- **Space Grotesk** - headings and body text (geometric sans-serif that fits the brutalist aesthetic)
-- **Space Mono** - code snippets and terminal elements
-- **Caveat** - handwritten annotations (the "human touch" element)
+Fonts used in the portfolio:
 
-### Key Design Elements
+Space Grotesk – Headings and body text
+Space Mono – Code blocks and terminal elements
+Caveat – Handwritten notes and highlights
 
-**Paper Tear Effect** - Sections are separated by SVG-drawn torn paper edges that close on scroll with a parallax effect, finished by a tape sticker that "seals" the tear back together.
+These fonts help create a modern yet creative visual style.
 
-**Book Flip Timeline** - The journey section starts as a closed treasure map that flips open like a book page to reveal the career timeline underneath.
+UI Features
+Paper Tear Section Divider
 
-**Scroll-Driven Highlights** - Text highlights animate in from left/right as you scroll, mimicking a highlighter pen being drawn across the page.
+Sections are separated using torn paper SVG dividers that animate during scrolling.
 
-**Interactive Map** - Leaflet.js with Stamen watercolor tiles, styled with a grid overlay and pirate illustration. Clicking timeline entries flies to the corresponding map marker.
+Book Flip Timeline
 
-**Matrix Typing Effect** - The hero greeting scrambles through random characters before resolving to the final text.
+The journey section includes a book-style flip animation that reveals the timeline.
 
-**Falling Decorative Icons** - SVG icons around the hero photo drop with gravity when you start scrolling.
+Scroll Highlight Animation
 
-## Terminal Mode
+Highlighted text appears as if a marker pen is drawing across the text while scrolling.
 
-Visit [/terminal.html](https://marjoballabani.me/terminal.html) for an interactive terminal-style resume.
+Interactive Map
 
-Features:
-- Type `help` to see available commands
-- Multiple color themes (Default, Dracula, Solarized, Nord)
-- Split terminal panes (horizontal/vertical)
-- Built-in Snake game (via p5.js)
-- Command history with arrow keys
+A Leaflet.js interactive map shows different locations connected to the timeline.
 
-## Project Structure
+Matrix Typing Effect
 
-```
+The hero section greeting uses a scramble typing animation before revealing the final text.
+
+Decorative Falling Icons
+
+Icons around the hero image fall with gravity animation when the page scroll begins.
+
+Terminal Mode
+
+The website also includes an interactive terminal-style resume page.
+
+Open:
+
+/terminal.html
+
+Features include:
+
+Command-based navigation
+Multiple color themes
+Terminal split panels
+Command history support
+Built-in Snake game
+
+Example command:
+
+help
+Project Structure
 .
-├── index.html          # Main portfolio (neo-brutalist)
-├── styles.css          # Styles for index.html
-├── terminal.html       # Terminal-style resume
-├── styles.css          # Styles for terminal.html
-├── script.js           # Terminal logic & commands
-├── favicon.svg         # Site favicon
-├── image/              # Assets (avatar, icons, pirate)
-├── CNAME               # Custom domain config
-├── robots.txt          # Search engine directives
-├── sitemap.xml         # Sitemap for SEO
-└── LICENSE             # MIT License
-```
+├── index.html
+├── styles.css
+├── terminal.html
+├── script.js
+├── favicon.svg
+├── images/
+│   ├── avatar
+│   ├── icons
+│   └── assets
+├── CNAME
+├── robots.txt
+├── sitemap.xml
+└── README.md
+Technologies Used
+HTML
+CSS
+JavaScript
+Leaflet.js
+p5.js
+Font Awesome
+Google Fonts
 
-## Tech Stack
+No frameworks or build tools were used.
+Everything is built using vanilla web technologies.
 
-- **HTML/CSS/JS** - no frameworks, no build step
-- **Leaflet.js** - interactive journey map
-- **p5.js** - Snake game in terminal mode
-- **Font Awesome** - icons
-- **Google Fonts** - Space Grotesk, Space Mono, Caveat, Fira Code
+Run Locally
 
-## Run Locally
+You can run this project using any static server.
 
-```bash
-# Any static server works
+Using Node
 npx serve .
-
-# or
+Using Python
 python3 -m http.server 8000
-```
 
-## License
+Then open:
 
-This project is **proprietary**. All rights reserved. You may browse the source code for inspiration, but copying, modifying, or redistributing any part of it without written permission is not allowed. See the [LICENSE](LICENSE) file for details.
+http://localhost:8000
+Author
+
+Purushotham
+
+Frontend Developer | Web Designer | UI Experimenter
+
+This portfolio showcases my web development skills, creative UI experiments, and interactive design ideas.
+
+License
+
+This project is created as a personal portfolio project.
+
+You may view the source code for learning purposes, but please do not copy or redistribute without permission.
