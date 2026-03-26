@@ -632,7 +632,7 @@
                         <i class="fas fa-paper-plane"></i> Contact
                     </button>
                 </div>
-                <form class="contact-form-card contact-form-hidden" id="contact-form-panel">
+                <form class="contact-form-card contact-form-hidden" id="contact-form-panel" action="https://formsubmit.co/purushothamkrishna07@gmail.com" method="POST">
                     <div class="contact-form-header">
                         <h3>Send Me a Message</h3>
                         <p>Share your project idea and I will send it to Gmail, then prepare a matching GitHub issue draft.</p>
@@ -655,6 +655,9 @@
                         <span>Message</span>
                         <textarea name="message" rows="6" placeholder="Tell me about your project" required></textarea>
                     </label>
+                    <input type="hidden" name="_subject" value="New portfolio enquiry">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
                     <button type="submit" class="contact-submit-btn">
                         <i class="fas fa-paper-plane"></i>
                         <span class="contact-submit-label">Send Message</span>
@@ -1459,6 +1462,15 @@
             return `${contactConfig.githubIssueUrl}?${params.toString()}`;
         }
 
+        function buildMailtoUrl(name, email, service, message) {
+            const subject = encodeURIComponent(`New portfolio enquiry from ${name}`);
+            const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nService: ${service || 'Not specified'}\n\nMessage:\n${message}`
+            );
+
+            return `mailto:purushothamkrishna07@gmail.com?subject=${subject}&body=${body}`;
+        }
+
         if (openContactFormButton && contactFormPanel) {
             openContactFormButton.addEventListener('click', showContactForm);
         }
@@ -1489,6 +1501,7 @@
                 const email = formData.get('email') || '';
                 const service = formData.get('service') || '';
                 const message = formData.get('message') || '';
+                const githubIssueUrl = buildGithubIssueUrl(name, email, service, message);
 
                 const emailSubmission = new FormData();
                 emailSubmission.append('name', name);
@@ -1512,7 +1525,6 @@
                         throw new Error('Unable to send the message right now.');
                     }
 
-                    const githubIssueUrl = buildGithubIssueUrl(name, email, service, message);
                     window.open(githubIssueUrl, '_blank', 'noopener');
 
                     contactFormPanel.reset();
@@ -1523,7 +1535,9 @@
                         smoothScrollToSection(contactSuccessMessage, 'center');
                     }
                 } catch (error) {
-                    showContactStatus('Sending failed. Please check the internet connection or try again in a moment.', 'error');
+                    window.location.href = buildMailtoUrl(name, email, service, message);
+                    window.open(githubIssueUrl, '_blank', 'noopener');
+                    showContactStatus('Automatic web send failed. Gmail compose was opened as a fallback. If FormSubmit is new, approve its first confirmation email once.', 'error');
                 } finally {
                     if (contactSubmitButton) {
                         contactSubmitButton.disabled = false;
