@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/purushotham-btech/">
-
     <!-- Primary Meta Tags -->
     <title>Purushotham | Digital Web Developer & Creative Logo Designer</title>
     <meta name="title" content="Purushotham | Digital Web Developer & Creative Logo Designer">
@@ -745,18 +743,26 @@
             }, 1200); // Hide after 1.2 seconds
         });
 
+        function smoothScrollToSection(targetSection, block = 'start') {
+            if (!targetSection) return;
+
+            const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+            const sectionRect = targetSection.getBoundingClientRect();
+            const top = block === 'center'
+                ? sectionRect.top + window.scrollY - (window.innerHeight / 2) + (sectionRect.height / 2)
+                : sectionRect.top + window.scrollY - navbarHeight - 28;
+
+            window.scrollTo({
+                top: Math.max(0, top),
+                behavior: 'smooth'
+            });
+        }
+
         // Hero Photo Tilt on Scroll
         let photoTilted = false;
         const heroPhoto = document.querySelector('.hero-photo');
 
         if (heroPhoto) {
-            window.addEventListener('scroll', () => {
-                if (!photoTilted && window.scrollY > 5) {
-                    heroPhoto.classList.add('tilted');
-                    photoTilted = true;
-                }
-            });
-
             // Hero Photo Hover - Reset to starting position
             heroPhoto.addEventListener('mouseenter', () => {
                 heroPhoto.classList.remove('tilted');
@@ -843,15 +849,6 @@
 
         calculateFallDistance();
         window.addEventListener('resize', calculateFallDistance);
-
-        if (decoTerminal) {
-            window.addEventListener('scroll', () => {
-                if (!terminalFallen && window.scrollY > 5) {
-                    decoTerminal.classList.add('falling');
-                    terminalFallen = true;
-                }
-            });
-        }
 
         // Paper Tear Gap Parallax Effect
         const pageGap = document.querySelector('.page-gap');
@@ -960,7 +957,6 @@
             }
         }
 
-        window.addEventListener('scroll', updateGapParallax);
         window.addEventListener('resize', updateGapParallax);
 
         // Initialize all animations with current scroll position
@@ -1012,7 +1008,6 @@
             });
         }
 
-        window.addEventListener('scroll', updateHighlights);
         requestAnimationFrame(() => {
             updateHighlights();
         });
@@ -1060,7 +1055,6 @@
             });
         }
 
-        window.addEventListener('scroll', updateLanguageStars);
         requestAnimationFrame(() => {
             updateLanguageStars();
         });
@@ -1129,7 +1123,6 @@
             }
         }
 
-        window.addEventListener('scroll', updateJourneyTimeline);
         requestAnimationFrame(() => {
             updateJourneyTimeline();
         });
@@ -1172,7 +1165,7 @@
                 const targetId = link.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    smoothScrollToSection(targetSection);
                 }
             });
         });
@@ -1181,14 +1174,17 @@
         const navbar = document.querySelector('.navbar');
         let lastScroll = 0;
 
-        window.addEventListener('scroll', () => {
+        function updateNavbarState() {
+            if (!navbar) return;
+
             const currentScroll = window.pageYOffset;
+            const scrollDelta = currentScroll - lastScroll;
 
             // Smart hide/show navbar
-            if (currentScroll > lastScroll && currentScroll > 100) {
+            if (scrollDelta > 6 && currentScroll > 100) {
                 // Scrolling down & past threshold - hide navbar
                 navbar.classList.add('navbar-hidden');
-            } else if (currentScroll < lastScroll) {
+            } else if (scrollDelta < -6 || currentScroll < 40) {
                 // Scrolling up - show navbar
                 navbar.classList.remove('navbar-hidden');
             }
@@ -1211,7 +1207,7 @@
             });
 
             lastScroll = currentScroll;
-        });
+        }
 
         // Intersection Observer for fade-in animations
         const observerOptions = {
@@ -1417,7 +1413,7 @@
             }
             if (contactFormPanel) {
                 contactFormPanel.classList.remove('contact-form-hidden');
-                contactFormPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                smoothScrollToSection(contactFormPanel);
             }
         }
 
@@ -1468,7 +1464,7 @@
 
                     if (contactSuccessMessage) {
                         contactSuccessMessage.classList.remove('contact-form-hidden');
-                        contactSuccessMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        smoothScrollToSection(contactSuccessMessage, 'center');
                     }
                 }, 350);
             });
@@ -1571,14 +1567,46 @@
                 const sectionId = checkpoint.getAttribute('data-section');
                 const section = document.getElementById(sectionId);
                 if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    smoothScrollToSection(section);
                 }
             });
         });
 
-        window.addEventListener('scroll', updateProgressBar);
+        let scrollTicking = false;
+
+        function runScrollEffects() {
+            scrollTicking = false;
+
+            if (!terminalFallen && decoTerminal && window.scrollY > 5) {
+                decoTerminal.classList.add('falling');
+                terminalFallen = true;
+            }
+
+            if (heroPhoto) {
+                const shouldTilt = window.scrollY > 5;
+                if (shouldTilt !== photoTilted) {
+                    photoTilted = shouldTilt;
+                    heroPhoto.classList.toggle('tilted', shouldTilt);
+                }
+            }
+
+            updateGapParallax();
+            updateHighlights();
+            updateLanguageStars();
+            updateJourneyTimeline();
+            updateNavbarState();
+            updateProgressBar();
+        }
+
+        function scheduleScrollEffects() {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(runScrollEffects);
+        }
+
+        window.addEventListener('scroll', scheduleScrollEffects, { passive: true });
         window.addEventListener('resize', updateProgressBar);
-        updateProgressBar();
+        requestAnimationFrame(runScrollEffects);
 
     </script>
 </body>
