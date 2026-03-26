@@ -2947,6 +2947,24 @@ body[data-theme="dark"] .map-popup-company span {
   background: var(--yellow);
 }
 
+.contact-status-message {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border: var(--border-width) solid var(--border);
+  box-shadow: 4px 4px 0 var(--border);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.contact-status-message.is-error {
+  background: #ffd6d6;
+}
+
+.contact-status-message.is-success {
+  background: #d9f8d9;
+}
+
 .contact-success-message {
   margin-top: 2.5rem;
   padding: 2rem;
