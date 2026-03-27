@@ -206,11 +206,11 @@ html:focus-within {
   --text: #000000;
   --border: #000000;
   --primary: #66d9ef;
-  --secondary: #7ee7b7;
+  --secondary: #ffd93d;
   --accent: #a8e6cf;
   --pink: #ff6b9d;
   --white: #FFFFFF;
-  --yellow: #7ee7b7;
+  --yellow: #ffd93d;
   --cyan: #66d9ef;
   --shadow-offset: 4px;
   --border-width: 3px;
@@ -3127,7 +3127,7 @@ body[data-theme="dark"] .map-popup-company span {
 }
 
 .contact-card:nth-child(2) {
-  background: #7ee7b7;
+  background: #ffd93d;
   transform: rotate(1deg);
 }
 
@@ -3165,7 +3165,7 @@ body[data-theme="dark"] .contact-card:nth-child(1) {
 }
 
 body[data-theme="dark"] .contact-card:nth-child(2) {
-  background: #7ee7b7;
+  background: #ffd93d;
 }
 
 body[data-theme="dark"] .contact-card:nth-child(3) {
