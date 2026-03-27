@@ -206,11 +206,11 @@ html:focus-within {
   --text: #000000;
   --border: #000000;
   --primary: #66d9ef;
-  --secondary: #ffd93d;
+  --secondary: #7ee7b7;
   --accent: #a8e6cf;
   --pink: #ff6b9d;
   --white: #FFFFFF;
-  --yellow: #ffd93d;
+  --yellow: #7ee7b7;
   --cyan: #66d9ef;
   --shadow-offset: 4px;
   --border-width: 3px;
@@ -849,11 +849,11 @@ body[data-theme="dark"] .job-desc i {
   font-size: 1.5rem;
   text-decoration: none;
   box-shadow: 3px 3px 0 0 var(--border);
-  transition: all 0.2s ease;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background 0.28s ease;
 }
 
 .social-btn:hover {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 0 0 0 var(--border);
 }
 
@@ -877,12 +877,12 @@ body[data-theme="dark"] .job-desc i {
   border: var(--border-width) solid var(--border);
   border-radius: 6px;
   box-shadow: 4px 4px 0 0 var(--border);
-  transition: all 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
   width: fit-content;
 }
 
 .btn-cta:hover {
-  transform: translate(4px, 4px);
+  transform: translate(3px, 3px);
   box-shadow: 0 0 0 var(--border);
 }
 
@@ -2230,6 +2230,24 @@ body[data-theme="dark"] .stat-number {
   border: none;
 }
 
+.neo-marker-city {
+  position: absolute;
+  top: -72px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--cyan);
+  border: 3px solid var(--border);
+  box-shadow: 3px 3px 0 var(--border);
+  padding: 4px 10px;
+  font-weight: 700;
+  font-size: 11px;
+  white-space: nowrap;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text);
+  letter-spacing: 0.3px;
+  z-index: 11;
+}
+
 .neo-marker-label {
   position: absolute;
   top: -42px;
@@ -2316,6 +2334,10 @@ body[data-theme="dark"] .neo-marker-pin-current {
 
 body[data-theme="dark"] .neo-marker-label {
   background: var(--secondary);
+}
+
+body[data-theme="dark"] .neo-marker-city {
+  background: var(--primary);
 }
 
 /* Leaflet controls styling */
@@ -2838,12 +2860,12 @@ body[data-theme="dark"] .map-popup-company span {
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 6px 6px 0 var(--border);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .contact-open-btn:hover {
   background: var(--yellow);
-  transform: translate(6px, 6px);
+  transform: translate(4px, 4px);
   box-shadow: 0 0 0 var(--border);
 }
 
@@ -2853,8 +2875,8 @@ body[data-theme="dark"] .map-popup-company span {
   background: var(--white);
   border: var(--border-width) solid var(--border);
   box-shadow: 8px 8px 0 var(--border);
-  transform: rotate(-0.5deg);
-  animation: contactCardEnter 0.35s ease;
+  transform: rotate(-0.35deg);
+  animation: contactCardEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contact-form-hidden {
@@ -2907,13 +2929,13 @@ body[data-theme="dark"] .map-popup-company span {
   box-shadow: 4px 4px 0 var(--border);
   outline: none;
   resize: vertical;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, background 0.28s ease;
 }
 
 .contact-field input:focus,
 .contact-field textarea:focus {
   background: var(--yellow);
-  transform: translate(4px, 4px);
+  transform: translate(3px, 3px);
   box-shadow: 0 0 0 var(--border);
 }
 
@@ -2929,12 +2951,12 @@ body[data-theme="dark"] .map-popup-company span {
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 6px 6px 0 var(--border);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .contact-submit-btn:hover {
   background: var(--green);
-  transform: translate(6px, 6px);
+  transform: translate(4px, 4px);
   box-shadow: 0 0 0 var(--border);
 }
 
@@ -2972,8 +2994,8 @@ body[data-theme="dark"] .map-popup-company span {
   border: var(--border-width) solid var(--border);
   box-shadow: 8px 8px 0 var(--border);
   text-align: center;
-  transform: rotate(0.35deg);
-  animation: contactCardEnter 0.35s ease;
+  transform: rotate(0.2deg);
+  animation: contactCardEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contact-success-icon {
@@ -3007,11 +3029,11 @@ body[data-theme="dark"] .map-popup-company span {
 @keyframes contactCardEnter {
   from {
     opacity: 0;
-    transform: translateY(16px) rotate(-0.15deg);
+    transform: translateY(22px) rotate(-0.1deg) scale(0.985);
   }
   to {
     opacity: 1;
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(1);
   }
 }
 
@@ -3105,7 +3127,7 @@ body[data-theme="dark"] .map-popup-company span {
 }
 
 .contact-card:nth-child(2) {
-  background: #ffd93d;
+  background: #7ee7b7;
   transform: rotate(1deg);
 }
 
@@ -3143,7 +3165,7 @@ body[data-theme="dark"] .contact-card:nth-child(1) {
 }
 
 body[data-theme="dark"] .contact-card:nth-child(2) {
-  background: #ffd93d;
+  background: #7ee7b7;
 }
 
 body[data-theme="dark"] .contact-card:nth-child(3) {
